@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clean-Nest Property Management | Gran Canaria</title>
+  <meta name="description" content="Home care, gardening, cleaning & maintenance in Gran Canaria. Reliable property management with WhatsApp support." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Light / Fresh theme */
+      --bg:#F6FAFF;
+      --surface:#FFFFFF;
+      --surface2:#F1F7FF;
+      --stroke:#E6EEF8;
+
+      --text:#0B1B2B;
+      --muted:#52657A;
+
+      --brand-blue:#1F88FF;
+      --brand-blue2:#39B6FF;
+
+      --brand-green:#1AA85A;
+      --brand-green2:#33C26B;
+
+      --shadow: 0 18px 60px rgba(11,27,43,.12);
+      --shadow2: 0 10px 30px rgba(11,27,43,.10);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 1180px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(57, 182, 255, 0.13), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(51,194,107,.14), transparent 60%),
+        radial-gradient(900px 600px at 50% 100%, rgba(31,136,255,.10), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(var(--max), calc(100% - 48px)); margin:0 auto; }
+
+    /* Header */
+    .header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(246,250,255,.85), rgba(246,250,255,.55));
+      border-bottom: 1px solid var(--stroke);
+    }
+    .header-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
+    }
+    .logo{
+      width:44px; height:44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--brand-blue2), var(--brand-blue));
+      box-shadow: 0 14px 35px rgba(31,136,255,.18);
+      display:grid; place-items:center;
+      border:1px solid rgba(31,136,255,.18);
+    }
+    .logo svg{ opacity:.98; }
+    .brand-title{
+      display:flex; flex-direction:column; line-height:1.1;
+    }
+    .brand-title strong{ font-size:16px; letter-spacing:.2px; }
+    .brand-title span{
+      font-size:12px; color:var(--muted);
+      letter-spacing: .22em; text-transform:uppercase;
+    }
+
+    .nav{
+      display:flex; gap:18px; align-items:center;
+    }
+    .nav a{
+      font-size:13px; color:var(--muted);
+      padding:10px 10px;
+      border-radius: 12px;
+      transition: .2s ease;
+    }
+    .nav a:hover{ color:var(--text); background: rgba(31,136,255,.08); }
+
+    .cta{
+      display:flex; gap:10px; align-items:center;
+      min-width: 290px;
+      justify-content:flex-end;
+    }
+    .btn{
+      border:1px solid var(--stroke);
+      background: var(--surface);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 13px;
+      display:inline-flex; align-items:center; gap:10px;
+      transition:.2s ease;
+      cursor:pointer;
+      box-shadow: 0 8px 18px rgba(11,27,43,.06);
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(31,136,255,.06); }
+    .btn-primary{
+      border:1px solid rgba(26,168,90,.20);
+      background: linear-gradient(135deg, var(--brand-green2), var(--brand-green));
+      color: #fff;
+      box-shadow: 0 18px 45px rgba(26,168,90,.18);
+    }
+    .btn-primary:hover{ background: linear-gradient(135deg, var(--brand-green), var(--brand-green2)); }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.65);
+      font-size:13px;
+      color: var(--muted);
+      width: fit-content;
+      backdrop-filter: blur(10px);
+    }
+    .pill strong{ color: var(--text); }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      padding: 48px 0 26px;
+    }
+    .hero-card{
+      position:relative;
+      overflow:hidden;
+      border-radius: 28px;
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      background: var(--surface);
+      min-height: 580px;
+    }
+    .hero-bg{
+      position:absolute; inset:0;
+      /* Keep hero overlay darker for readable white text */
+      background:
+        linear-gradient(90deg, rgb(22, 102, 223) 0%, rgba(27, 53, 202, 0.582) 48%, rgb(20, 119, 212) 70%, rgba(7, 48, 231, 0.589) 100%),
+        radial-gradient(800px 480px at 30% 20%, rgba(6, 17, 179, 0.959), transparent 60%),
+        radial-gradient(700px 520px at 30% 78%, rgb(32, 121, 161), transparent 55%),
+        url("hero.jpg") center/cover no-repeat;
+      transform: scale(1.03);
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .hero-content{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      padding: 42px;
+      color: rgba(255,255,255,.92);
+    }
+
+    .h1{
+      font-size: clamp(34px, 3.5vw, 56px);
+      line-height: 1.05;
+      margin: 14px 0 12px;
+      letter-spacing:-0.03em;
+    }
+    .sub{
+      font-size: 15px;
+      color: rgba(255,255,255,.75);
+      max-width: 54ch;
+      line-height: 1.6;
+    }
+    .hero-actions{
+      display:flex; gap:12px; margin-top: 18px; flex-wrap:wrap;
+    }
+
+    .trust{
+      margin-top: 18px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .trust .pill{
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.75);
+    }
+    .trust .pill strong{ color: rgba(255,255,255,.95); }
+
+    .service-row{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .service{
+      background: rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      padding: 14px 14px;
+      backdrop-filter: blur(10px);
+      display:flex; gap:12px; align-items:flex-start;
+    }
+
+    /* === Use your extracted pictograms here === */
+    .pictogram-wrap{
+      width:44px; height:44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.20);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+    }
+    .pictogram{
+      width:34px; height:34px;
+      object-fit: contain;
+      display:block;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,.18));
+    }
+
+    .service strong{ display:block; font-size:14px; margin-bottom:4px; }
+    .service span{ font-size:12px; color: rgba(255,255,255,.75); line-height:1.4; }
+
+    .hero-right{
+      display:flex; flex-direction:column; justify-content:flex-end;
+      gap: 14px;
+    }
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 22px;
+      padding: 18px;
+      backdrop-filter: blur(14px);
+    }
+    .callout-title{
+      font-weight:800;
+      letter-spacing:.2px;
+      margin:0 0 8px;
+      font-size: 14px;
+      color: rgba(255,255,255,.92);
+    }
+    .big-number{
+      font-size: clamp(26px, 2.4vw, 36px);
+      font-weight: 900;
+      letter-spacing: .02em;
+      margin: 0;
+      display:flex; gap:10px; align-items:center;
+    }
+    .badge{
+      margin-top: 10px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .mini{
+      font-size:12px; color: rgba(255,255,255,.78);
+      padding: 9px 10px;
+      background: rgba(11,27,43,.22);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+    }
+
+    /* Sections */
+    section{ padding: 56px 0; }
+    .section-title{
+      font-size: 26px;
+      letter-spacing:-.02em;
+      margin:0 0 10px;
+      color: var(--text);
+    }
+    .section-sub{
+      margin:0 0 22px;
+      color: var(--muted);
+      line-height:1.6;
+      max-width: 70ch;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      background: var(--surface);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius2);
+      padding: 18px;
+      box-shadow: var(--shadow2);
+    }
+    .card h3{ margin:0 0 10px; font-size:16px; color: var(--text); }
+    .card ul{ margin:0; padding-left: 18px; color: var(--muted); line-height:1.7; }
+    .card li{ margin: 6px 0; }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    .photo{
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      min-height: 360px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.18), rgba(11,27,43,.30)),
+        url("hero.jpg") center/cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .step{
+      border-radius: 18px;
+      padding: 18px;
+      border:1px solid var(--stroke);
+      background: var(--surface);
+      box-shadow: var(--shadow2);
+    }
+    .step b{
+      display:inline-block;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(31,136,255,.10);
+      border:1px solid rgba(31,136,255,.18);
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .step p{ margin:0; color: var(--muted); line-height:1.6; }
+
+    .cta-final{
+      border-radius: 26px;
+      border:1px solid var(--stroke);
+      background:
+        radial-gradient(900px 300px at 20% 20%, rgba(51, 194, 106, 0.185), transparent 60%),
+        radial-gradient(900px 300px at 80% 40%, rgba(57,182,255,.16), transparent 60%),
+        var(--surface);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      display:flex; align-items:center; justify-content:space-between; gap: 16px;
+    }
+    .cta-final h2{ margin:0 0 6px; font-size: 22px; }
+    .cta-final p{ margin:0; color: var(--muted); }
+
+    footer{
+      padding: 26px 0 40px;
+      color: var(--muted);
+      border-top:1px solid var(--stroke);
+    }
+    .foot{
+      display:flex; gap: 14px; justify-content:space-between; flex-wrap:wrap;
+      align-items:center;
+    }
+
+    /* === Booking & Airbnb Hosts: 2 dynamic images, correct for 3840x2160 (16:9) === */
+    .host-images{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .host-image{
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius2);
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      box-shadow: none;
+
+      /* KEY: keep 16:9 ratio so your 3840x2160 images won't be cropped oddly */
+      aspect-ratio: 16 / 9;
+    }
+    .host-image img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      padding: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-content{ grid-template-columns: 1fr; }
+      .service-row{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .split{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+      .brand{ min-width: auto; }
+      .cta{ min-width:auto; }
+
+      .host-images{ grid-template-columns: 1fr; }
+
+      /* Optional: slightly taller on phones */
+      .host-image{ aspect-ratio: 4 / 3; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#">
+        <div class="logo" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M4 11.5L12 5l8 6.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.5 10.8V20h9V10.8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 20v-6h2v6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand-title">
+          <strong>Clean-Nest</strong>
+          <span>PROPERTY MANAGEMENT</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#why">Why us</a>
+        <a href="#how">How it works</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="#services">Explore services</a>
+        <a class="btn btn-primary" href="#contact">
+          <span aria-hidden="true">🟢</span>
+          WhatsApp: +34 624 680 309
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="hero-card">
+        <div class="hero-bg" role="img" aria-label="Gran Canaria villa and mountains background"></div>
+
+        <div class="hero-content">
+          <div>
+            <div class="pill">Serving <strong>Gran Canaria</strong> • Home Care • Gardening • Cleaning</div>
+            <h1 class="h1">Fresh, reliable property care — so your home is perfect when you arrive.</h1>
+            <p class="sub">
+              Clean-Nest keeps your property spotless, maintained, and always ready — with clear communication and professional standards.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact">WhatsApp us now</a>
+              <a class="btn" href="#how" style="background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.20); color: rgba(255,255,255,.92);">
+                See how it works
+              </a>
+            </div>
+
+            <!-- SERVICES (using pictograms extracted from your attached image) -->
+            <div class="service-row" id="services">
+              <div class="service">
+                <div class="pictogram-wrap" aria-hidden="true">
+                  <img class="pictogram" alt="" src="data:image/png;base64,{{HOME_ICON_BASE64}}" />
+                </div>
+                <div>
+                  <strong>Home Care</strong>
+                  <span>Keyholding, checks, airing, utilities, and peace of mind.</span>
+                </div>
+              </div>
+
+              <div class="service">
+                <div class="pictogram-wrap" aria-hidden="true">
+                  <img class="pictogram" alt="" src="data:image/png;base64,{{GARDEN_ICON_BASE64}}" />
+                </div>
+                <div>
+                  <strong>Gardening Services</strong>
+                  <span>Healthy gardens, clean edges, seasonal upkeep.</span>
+                </div>
+              </div>
+
+              <div class="service">
+                <div class="pictogram-wrap" aria-hidden="true">
+                  <img class="pictogram" alt="" src="data:image/png;base64,{{CLEAN_ICON_BASE64}}" />
+                </div>
+                <div>
+                  <strong>Cleaning & Maintenance</strong>
+                  <span>Deep cleans, refreshes, and trusted maintenance support.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right" id="contact">
+            <div class="glass">
+              <p class="callout-title">Fastest way to reach us</p>
+              <p class="big-number">🟢 +34 624 680 309</p>
+              <div class="badge">
+                <span class="mini">Quick response</span>
+                <span class="mini">Professional service</span>
+                <span class="mini">Gran Canaria</span>
+              </div>
+            </div>
+
+            <div class="glass">
+              <p class="callout-title">Free check (design-only)</p>
+              <p class="sub" style="margin:0">
+                Later we’ll add a form here. For now, message us on WhatsApp and we’ll guide you.
+              </p>
+              <div class="hero-actions" style="margin-top:12px">
+                <a class="btn btn-primary" href="#contact">Start on WhatsApp</a>
+                <a class="btn" href="#faq" style="background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.20); color: rgba(255,255,255,.92);">
+                  Questions?
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <section id="why">
+<div class="wrap split">
+  <div class="card" style="border-radius: var(--radius); padding:22px;">
+    <h2 class="section-title" style="margin-top:0;">For Booking & Airbnb Hosts</h2>
+    <p class="section-sub">
+      Turn your rental into a 5★ experience — without being on the island. You get fewer guest issues, faster turnovers, and a home that’s always ready.
+    </p>
+
+    <div class="host-images">
+      <div class="host-image">
+        <img src="./pics/host-1.png" alt="Airbnb host property management">
+      </div>
+
+      <div class="host-image">
+        <img src="./pics/host-2.png" alt="Booking.com rental turnover service">
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-radius: var(--radius); padding:22px;">
+    <h2 class="section-title" style="margin-top:0;">Clean, fresh, and professionally managed</h2>
+    <p class="section-sub">
+      Built for property owners who want consistent quality — with clear standards and dependable care.
+    </p>
+
+    <div class="grid-3" style="grid-template-columns:1fr 1fr; gap:12px;">
+      <div class="card" style="box-shadow:none;">
+        <h3>Routine property checks</h3>
+        <p class="section-sub" style="margin:0;">Prevent issues early with scheduled inspections.</p>
+      </div>
+      <div class="card" style="box-shadow:none;">
+        <h3>Trusted access handling</h3>
+        <p class="section-sub" style="margin:0;">Keys and coordination handled responsibly.</p>
+      </div>
+      <div class="card" style="box-shadow:none;">
+        <h3>Spotless presentation</h3>
+        <p class="section-sub" style="margin:0;">Cleaning that matches high expectations.</p>
+      </div>
+      <div class="card" style="box-shadow:none;">
+        <h3>Garden & outdoor care</h3>
+        <p class="section-sub" style="margin:0;">Fresh, tidy outdoor spaces all year.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <h2 class="section-title">How it works</h2>
+        <p class="section-sub">Simple, fast, and clear — designed around WhatsApp communication.</p>
+
+        <div class="steps">
+          <div class="step">
+            <b>Step 1</b>
+            <h3 style="margin:0 0 6px;">Message us</h3>
+            <p>Tell us what you need and where your property is located.</p>
+          </div>
+          <div class="step">
+            <b>Step 2</b>
+            <h3 style="margin:0 0 6px;">Confirm scope</h3>
+            <p>We align on services, frequency, and expectations (features later).</p>
+          </div>
+          <div class="step">
+            <b>Step 3</b>
+            <h3 style="margin:0 0 6px;">We take care</h3>
+            <p>We handle the work and keep you informed (automation later).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="wrap">
+        <h2 class="section-title">What owners say</h2>
+        <p class="section-sub">Lets us prove it. </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>★★★★★ “Spotless every time.”</h3>
+            <p class="section-sub" style="margin:0;">Perfect cleaning and very responsive on WhatsApp.</p>
+          </div>
+          <div class="card">
+            <h3>★★★★★ “Reliable and proactive.”</h3>
+            <p class="section-sub" style="margin:0;">They notice issues early and keep everything under control.</p>
+          </div>
+          <div class="card">
+            <h3>★★★★★ “Feels premium and fresh.”</h3>
+            <p class="section-sub" style="margin:0;">Exactly what you want for a home in Gran Canaria.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <h2 class="section-title">FAQ</h2>
+        <p class="section-sub">Still not sure? Contact us.</p>
+
+        <div class="grid-3" style="grid-template-columns: 1fr;">
+          <div class="card"><h3>What areas do you serve?</h3><p class="section-sub" style="margin:0;">Puerto Rico, Arguineguin, Maspalomas.</p></div>
+          <div class="card"><h3>Do you offer keyholding?</h3><p class="section-sub" style="margin:0;">Yes — handled professionally with agreed access rules.</p></div>
+          <div class="card"><h3>Can I get regular updates?</h3><p class="section-sub" style="margin:0;">Yes — WhatsApp updates now, automated reporting later.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta-final">
+          <div>
+            <h2>Ready for a cleaner, fresher property?</h2>
+            <p>Message Clean-Nest on WhatsApp and we’ll take it from there.</p>
+          </div>
+          <a class="btn btn-primary" href="#contact">🟢 +34 624 680 309</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div>© <span id="y"></span> Clean-Nest Property Management • Gran Canaria</div>
+        <div>WhatsApp: +34 624 680 309</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    /*
+      IMPORTANT:
+      Replace the three placeholders below with the BASE64 strings of your pictograms.
+      I left them as {{HOME_ICON_BASE64}}, {{GARDEN_ICON_BASE64}}, {{CLEAN_ICON_BASE64}}
+      so you can paste them easily without hunting in the HTML.
+    */
+  </script>
+
+  <!--
+    Paste BASE64 below by replacing these placeholders:
+
+    1) {{HOME_ICON_BASE64}}
+    2) {{GARDEN_ICON_BASE64}}
+    3) {{CLEAN_ICON_BASE64}}
+
+    Tip: if you prefer file-based icons instead of base64, replace the <img src> with:
+      src="icons/home.png"
+      src="icons/garden.png"
+      src="icons/clean.png"
+  -->
+</body>
+</html>
